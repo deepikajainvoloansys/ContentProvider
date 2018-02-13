@@ -22,14 +22,16 @@ public class MainActivity extends AppCompatActivity {
         try {
             c = yourCR.query(students, null, null, null, "");
             if (c.moveToFirst()) {
-                do{
+                do {
                     Toast.makeText(this,
                             c.getString(c.getColumnIndex("_id")) +
-                                    ", " +  c.getString(c.getColumnIndex( "name")) +
-                                    ", " + c.getString(c.getColumnIndex( "grade")),
+                                    ", " + c.getString(c.getColumnIndex("name")) +
+                                    ", " + c.getString(c.getColumnIndex("grade")),
                             Toast.LENGTH_SHORT).show();
                 } while (c.moveToNext());
             }
+            c.close();
+            yourCR.release();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
